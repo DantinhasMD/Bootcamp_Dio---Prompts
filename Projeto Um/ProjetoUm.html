@@ -1,158 +1,185 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>História Interativa</title>
+    <title>A Jornada do Artefato</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #2a2a1f, #5c4f38);
+            color: #fefcf3;
+        }
+
+        #game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #story {
+            background: rgba(50, 40, 30, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+
+        #scene-image {
+            width: 250px;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        #choices button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background: #6b4c3a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #choices button:hover {
+            background: #8b6b52;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div id="game-container">
         <div id="story">
-            <h1>O Chamado para a Jornada</h1>
-            <p id="story-text">
-                Era uma manhã como qualquer outra na vila de Eldoria, mas algo dentro de você dizia que aquele dia seria diferente. Enquanto caminhava pela trilha da Floresta Encantada, seus olhos foram atraídos por um brilho incomum entre as folhas. Uma pedra esférica, com um brilho dourado que pulsava como um coração vivo, repousava em um pedestal coberto de musgo.
-                Quando você tocou a pedra, uma energia percorreu seu corpo. Antes que pudesse entender o que havia acontecido, uma raposa dourada emergiu das sombras. Seus olhos brilhavam como duas estrelas, e sua voz era tão suave quanto o vento da manhã.
-                'Você foi escolhido, viajante', disse a raposa. 'Este artefato carrega o destino do nosso mundo. O equilíbrio entre luz e trevas está rompido, e apenas você pode restaurá-lo.'
-                
-                À sua frente, dois caminhos surgiram como se a floresta os moldasse para você. À esquerda, o caminho da luz, iluminado por raios dourados que atravessavam as copas das árvores. À direita, o caminho das trevas, envolto em uma névoa densa e fria.
+            <h1 id="scene-title">A Jornada do Artefato</h1>
+            <p id="scene-text">
+                Era uma manhã como qualquer outra na vila de Eldoria, mas algo dentro de você dizia que aquele dia seria diferente. Durante sua caminhada pela Floresta Encantada, você é atraído por um brilho dourado entre as folhas. Uma pedra esférica, pulsando como um coração vivo, repousa sobre um pedestal coberto de musgo.
+
+                Quando você tocou a pedra, uma energia percorreu seu corpo, e uma raposa dourada emergiu das sombras. ‘Você foi escolhido, viajante,’ disse ela. ‘Este artefato carrega o destino do nosso mundo. O equilíbrio entre luz e trevas está rompido, e apenas você pode restaurá-lo.’
+
+                Dois caminhos surgiram à sua frente.
             </p>
-            <img id="you" src="image/you.webp" alt="Você encontrando a pedra">
-            <img id="caminhos" src="image/doisCaminhos.webp" alt="A escolhe entre os dois caminhos"/>
+            <img id="scene-image" src="image/doisCaminhos.webp">
         </div>
         <div id="choices">
             <button onclick="chooseOption(1)">Seguir para o Reino da Luz</button>
             <button onclick="chooseOption(2)">Seguir para o Reino da Escuridão</button>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        let score = 0; // Contador para determinar o final
+        let sceneIndex = 1; // Rastreia o progresso da história
+
+        const scenes = [
+            {
+                title: "A Jornada do Artefato",
+                text: "Era uma manhã como qualquer outra na vila de Eldoria, mas algo dentro de você dizia que aquele dia seria diferente. Durante sua caminhada pela Floresta Encantada, você é atraído por um brilho dourado entre as folhas. Uma pedra esférica, pulsando como um coração vivo, repousa sobre um pedestal coberto de musgo.\n\nQuando você tocou a pedra, uma energia percorreu seu corpo, e uma raposa dourada emergiu das sombras. ‘Você foi escolhido, viajante,’ disse ela. ‘Este artefato carrega o destino do nosso mundo. O equilíbrio entre luz e trevas está rompido, e apenas você pode restaurá-lo.’\n\nDois caminhos surgiram à sua frente.",
+                options: [
+                    { text: "Seguir para o Reino da Luz", nextScene: 2, effect: 1},
+                    { text: "Seguir para o Reino da Escuridão", nextScene: 3, effect: -1 }
+                ]
+            },
+            {
+                title: "Reino da Luz",
+                text: "Você chega ao Reino da Luz, onde encontra o sábio do reino. Ele revela que o artefato foi corrompido por um poder sombrio. Ele lhe dá um mapa para encontrar uma pista vital.\n\nDois caminhos surgem à sua frente: uma floresta radiante e um deserto árido.",
+                image: "image/reinoluz.webp",
+                options: [
+                    { text: "Explorar a floresta radiante", nextScene: 4, effect: 1 },
+                    { text: "Atravessar o deserto árido", nextScene: 5, effect: -1 }
+                ]
+            },
+            {
+                title: "Reino da Escuridão",
+                text: "Você adentra o Reino da Escuridão. As sombras parecem se mover, e uma criatura misteriosa oferece conhecimento sobre o artefato em troca de um favor perigoso.\n\nVocê precisa escolher: confiar na criatura ou ignorá-la e seguir sozinho.",
+                image: "image/caminhoTrevoso.webp",
+                options: [
+                    { text: "Aceitar a oferta da criatura", nextScene: 5, effect: -1 },
+                    { text: "Seguir sozinho pelo reino", nextScene: 4, effect: 1 }
+                ]
+            },
+            {
+                title: "O Santuário Perdido",
+                text: "Você encontra o Santuário Perdido, onde o artefato deve ser purificado. O santuário está protegido por guardiões.\n\nVocê precisa decidir: lutar contra os guardiões ou tentar dialogar com eles.",
+                image: "image/superMonstro.webp",
+                options: [
+                    { text: "Lutar contra os guardiões", nextScene: 5, effect: -1 },
+                    { text: "Tentar dialogar", nextScene: 6, effect: 1 }
+                ]
+            },
+            {
+                title: "Luta contra os Guardiões",
+                text: "Você encontra grandes guardiões e decide confrontá-los. Você ganha, porém algo maligno se apodera de você.\n\nVocê precisa decidir: ocultar essa magia maligna que há em você ou usar esse novo poder quando quiser.",
+                image: "image/monstroPreto.webp",
+                options: [
+                    { text: "Usar o poder", nextScene: 6 , effect: -1 },
+                    { text: "Ocultar o poder", nextScene: 6, effect: 1 }
+                ]
+            },
+            {
+                title: "O Ritual Final",
+                text: "Chegou o momento de restaurar o equilíbrio. Você pode usar o artefato para restaurar a luz ou destruí-lo para selar as trevas para sempre.\n\nQual será sua escolha?",
+                image: "image/you.webp",
+                options: [
+                    { text: "Restaurar a luz", nextScene: "end", effect: 1 },
+                    { text: "Selar as trevas", nextScene: "end", effect: -1 }
+                ]
+            }
+        ];
+
+        function chooseOption(optionIndex) {
+            const currentScene = scenes[sceneIndex - 1];
+            const chosenOption = currentScene.options[optionIndex - 1];
+
+            score += chosenOption.effect;
+            sceneIndex = chosenOption.nextScene;
+
+            if (sceneIndex === "end") {
+                displayEnding();
+                return;
+            }
+
+            renderScene(sceneIndex);
+        }
+
+        function renderScene(index) {
+            const scene = scenes[index - 1];
+            document.getElementById("scene-title").textContent = scene.title;
+            document.getElementById("scene-text").textContent = scene.text;
+            document.getElementById("scene-image").src = scene.image || "image/default.webp";
+            const choicesDiv = document.getElementById("choices");
+            choicesDiv.innerHTML = "";
+            scene.options.forEach((option, idx) => {
+                const button = document.createElement("button");
+                button.textContent = option.text;
+                button.onclick = () => chooseOption(idx + 1);
+                choicesDiv.appendChild(button);
+            });
+        }
+
+        function displayEnding() {
+            const endingText = score > 0 ?
+                "Você restaurou o equilíbrio e trouxe paz ao mundo!" :
+                "O desequilíbrio consumiu o mundo. As trevas prevaleceram.";
+            const endingImage = score > 0 ?
+                "image/raposaBrilhante.webp" :
+                "image/grandeMonstro.webp";
+            document.getElementById("scene-title").textContent = "Fim da Jornada";
+            document.getElementById("scene-text").textContent = endingText;
+            document.getElementById("scene-image").src = endingImage;
+            document.getElementById("choices").innerHTML = "";
+        }
+    </script>
 </body>
 </html>
-
-<style>
-   body {
-    font-family: Arial, sans-serif;
-    background-color: #2e2e2e;
-    color: #f9f9f9;
-    margin: 20px;
-    padding: 0;
-    }
-
-    p {
-        padding: 5px;
-    }
-
-    #game-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        text-align: center;
-        padding: 40px;
-    }
-
-    #story img {
-        max-width: 100%;
-        width: 250px;
-        height: auto;
-        margin: 20px 0;
-        border: 2px solid #fff;
-        border-radius: 10px;
-        padding: 10px;
-    }
-
-    #choices button {
-        margin: 10px;
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-        background-color: #4caf50;
-        color: white;
-        border-radius: 5px;
-        transition: background-color 0.3s, transform 0.2s;
-    }
-
-    #choices button:hover {
-        background-color: #45a049;
-    }
-
-    #choices button:active {
-        transform: scale(0.95);
-    }
-</style>
-
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-    const storyText = document.getElementById("story-text");
-    const sceneImage = document.getElementById("caminhos");
-    const choicesDiv = document.getElementById("choices");
-
-    function chooseOption(option) {
-        if (option === 1) {
-            // Cena 2 - Reino da Luz
-            storyText.innerHTML = 
-                "Você decide seguir para o Reino da Luz. O caminho é acolhedor, com árvores carregadas de folhas douradas " +
-                "e uma brisa suave que parece carregar cantos angelicais. Após algum tempo, você chega ao portão do reino, " +
-                "onde guardiões de armadura dourada o esperam. Eles dizem: 'Bem-vindo, viajante escolhido. O Conselho da Luz o aguarda para decidir o destino do equilíbrio.'";
-            sceneImage.src = "image/caminhoLuz.webp";
-            sceneImage.alt = "Portões do Reino da Luz, com guardiões de armadura dourada";
-            updateChoices(["Entrar no reino e encontrar o Conselho", "Explorar as redondezas antes de entrar"]);
-        } else if (option === 2) {
-            // Cena 2 - Reino da Escuridão
-            storyText.innerHTML = 
-                "Você escolhe o caminho das trevas. A névoa ao seu redor torna-se cada vez mais densa, e o frio arrepia " +
-                "sua espinha. Sons distantes de sussurros ecoam pelo ambiente. Após um tempo, você chega a um castelo sombrio " +
-                "com torres que parecem perfurar os céus. Um espírito vingativo surge diante de você, sua aura imponente exigindo uma decisão: 'Por que você veio aqui, mortal?'";
-            sceneImage.src = "image/caminhoTrevoso.webp";
-            sceneImage.alt = "Castelo sombrio do Reino da Escuridão, envolto em névoa";
-            updateChoices(["Responder ao espírito", "Recuar e retornar ao caminho inicial"]);
-        } else if (option === 3) {
-            // Cena 3 - Conselho da Luz
-            storyText.innerHTML = 
-                "Você entra no Reino da Luz e é recebido por um Conselho de seres iluminados. Eles explicam que o equilíbrio foi rompido devido " +
-                "ao roubo de um artefato pelo Reino da Escuridão. Você deve recuperar a relíquia sagrada para restaurar a paz.";
-            sceneImage.src = "image/manta.webp";
-            sceneImage.alt = "Conselho da Luz reunido em uma sala dourada";
-            updateChoices(["Aceitar a missão", "Recusar e retornar à vila"]);
-        } else if (option === 4) {
-            // Cena 3 - Explorar redondezas do Reino da Luz
-            storyText.innerHTML = 
-                "Você decide explorar as redondezas antes de entrar no Reino da Luz. Entre as árvores douradas, você encontra uma raposa " +
-                "dourada novamente. Ela diz: 'Escolhas apressadas podem trazer consequências inesperadas. Decida sabiamente.'";
-            sceneImage.src = "image/raposaBrilhante.webp";
-            sceneImage.alt = "A raposa dourada no meio das árvores";
-            updateChoices(["Seguir a raposa", "Ignorar e entrar no reino"]);
-        } else if (option === 5) {
-            // Cena 3 - Espírito Vingativo
-            storyText.innerHTML = 
-                "Você decide responder ao espírito vingativo. Ele ouve atentamente sua justificativa para estar ali e diz: 'Se sua intenção é " +
-                "recuperar o equilíbrio, precisará provar seu valor passando por três testes.'";
-            sceneImage.src = "image/superMonstro.webp";
-            sceneImage.alt = "Espírito vingativo pairando no ar";
-            updateChoices(["Aceitar os testes", "Fugir para salvar sua vida"]);
-        } else if (option === 6) {
-            // Cena 3 - Recuar no caminho da Escuridão
-            storyText.innerHTML = 
-                "O medo toma conta de você, e decide retornar ao caminho inicial. A sensação de que algo estava observando persiste, mas " +
-                "pelo menos você está fora do alcance do espírito.";
-            sceneImage.src = "ProjetoUm/image/floresta.webp";
-            sceneImage.alt = "Caminho de volta à clareira inicial";
-            updateChoices(["Escolher outro caminho", "Ficar na clareira para descansar"]);
-        }
-    }
-
-    function updateChoices(options) {
-        choicesDiv.innerHTML = ""; // Limpa as opções anteriores
-        options.forEach((option, index) => {
-            const button = document.createElement("button");
-            button.textContent = option;
-            button.onclick = () => chooseOption(index + 1);
-            choicesDiv.appendChild(button);
-        });
-    }
-
-    // Inicialização da cena inicial
-    updateChoices(["Seguir para o Reino da Luz", "Seguir para o Reino da Escuridão"]);
-});
-</script>
