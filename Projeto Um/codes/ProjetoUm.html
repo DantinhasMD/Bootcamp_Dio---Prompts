@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>História Interativa</title>
+</head>
+<body>
+    <div id="game-container">
+        <div id="story">
+            <h1>O Chamado para a Jornada</h1>
+            <p id="story-text">
+                Era uma manhã como qualquer outra na vila de Eldoria, mas algo dentro de você dizia que aquele dia seria diferente. Enquanto caminhava pela trilha da Floresta Encantada, seus olhos foram atraídos por um brilho incomum entre as folhas. Uma pedra esférica, com um brilho dourado que pulsava como um coração vivo, repousava em um pedestal coberto de musgo.
+                <img id="you" src="ProjetoUm\image\you.webp" alt="Você encontrando a pedra">
+                Quando você tocou a pedra, uma energia percorreu seu corpo. Antes que pudesse entender o que havia acontecido, uma raposa dourada emergiu das sombras. Seus olhos brilhavam como duas estrelas, e sua voz era tão suave quanto o vento da manhã.
+                <img id="raposaBrilhante" src="ProjetoUm\image\raposaBrilhante.webp" alt="A raposa">
+                ‘Você foi escolhido, viajante’, disse a raposa. ‘Este artefato carrega o destino do nosso mundo. O equilíbrio entre luz e trevas está rompido, e apenas você pode restaurá-lo.’
+                
+                À sua frente, dois caminhos surgiram como se a floresta os moldasse para você. À esquerda, o caminho da luz, iluminado por raios dourados que atravessavam as copas das árvores. À direita, o caminho das trevas, envolto em uma névoa densa e fria.
+            </p>
+            <img id="caminhos" src="Projeto Um\image\you.webp" alt="A escolhe entre os dois caminhos"/>
+        </div>
+        <div id="choices">
+            <button onclick="chooseOption(1)">Seguir para o Reino da Luz</button>
+            <button onclick="chooseOption(2)">Seguir para o Reino da Escuridão</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+<style>
+   body {
+    font-family: Arial, sans-serif;
+    background-color: #2e2e2e;
+    color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    }
+
+    #game-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        text-align: center;
+    }
+
+    #story img {
+        max-width: 80%;
+        height: auto;
+        margin: 20px 0;
+    }
+
+    #choices button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+        border-radius: 5px;
+    }
+
+    #choices button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<script>
+    function chooseOption(option) {
+    const storyText = document.getElementById("story-text");
+    const sceneImage = document.getElementById("scene-image");
+
+    if (option === 1) {
+        // Atualizar texto e imagem para a próxima cena
+        storyText.textContent = 
+            "Você segue a raposa, que o guia até um portal brilhante coberto de runas douradas. " +
+            "A energia do portal parece chamá-lo para entrar.";
+        sceneImage.src = "portal.png"; // Imagem do portal
+        sceneImage.alt = "Um portal brilhante coberto de runas douradas";
+        updateChoices(["Entrar no portal", "Voltar para a clareira"]);
+    } else if (option === 2) {
+        storyText.textContent = 
+            "Você decide ignorar a raposa e explorar a floresta. Conforme caminha, as sombras parecem se mover, " +
+            "e você sente que está sendo observado.";
+        sceneImage.src = "dark_forest.png"; // Imagem de uma floresta sombria
+        sceneImage.alt = "Uma floresta sombria com árvores retorcidas";
+        updateChoices(["Investigar as sombras", "Voltar para a clareira"]);
+    }
+    }
+
+    function updateChoices(options) {
+        const choicesDiv = document.getElementById("choices");
+        choicesDiv.innerHTML = ""; // Limpa as opções anteriores
+        options.forEach((option, index) => {
+            const button = document.createElement("button");
+            button.textContent = option;
+            button.onclick = () => chooseOption(index + 1);
+            choicesDiv.appendChild(button);
+        });
+    }
+</script>
