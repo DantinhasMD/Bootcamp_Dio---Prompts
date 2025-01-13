@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>História Interativa</title>
+</head>
+<body>
+    <div id="game-container">
+        <div id="story">
+            <h1>O Chamado para a Jornada</h1>
+            <p id="story-text">
+                Era uma manhã como qualquer outra na vila de Eldoria, mas algo dentro de você dizia que aquele dia seria diferente. Enquanto caminhava pela trilha da Floresta Encantada, seus olhos foram atraídos por um brilho incomum entre as folhas. Uma pedra esférica, com um brilho dourado que pulsava como um coração vivo, repousava em um pedestal coberto de musgo.
+                Quando você tocou a pedra, uma energia percorreu seu corpo. Antes que pudesse entender o que havia acontecido, uma raposa dourada emergiu das sombras. Seus olhos brilhavam como duas estrelas, e sua voz era tão suave quanto o vento da manhã.
+                'Você foi escolhido, viajante', disse a raposa. 'Este artefato carrega o destino do nosso mundo. O equilíbrio entre luz e trevas está rompido, e apenas você pode restaurá-lo.'
+                
+                À sua frente, dois caminhos surgiram como se a floresta os moldasse para você. À esquerda, o caminho da luz, iluminado por raios dourados que atravessavam as copas das árvores. À direita, o caminho das trevas, envolto em uma névoa densa e fria.
+            </p>
+            <img id="you" src="image/you.webp" alt="Você encontrando a pedra">
+            <img id="caminhos" src="image/doisCaminhos.webp" alt="A escolhe entre os dois caminhos"/>
+        </div>
+        <div id="choices">
+            <button onclick="chooseOption(1)">Seguir para o Reino da Luz</button>
+            <button onclick="chooseOption(2)">Seguir para o Reino da Escuridão</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+<style>
+   body {
+    font-family: Arial, sans-serif;
+    background-color: #2e2e2e;
+    color: #f9f9f9;
+    margin: 20px;
+    padding: 0;
+    }
+
+    p {
+        padding: 5px;
+    }
+
+    #game-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        text-align: center;
+        padding: 40px;
+    }
+
+    #story img {
+        max-width: 100%;
+        width: 250px;
+        height: auto;
+        margin: 20px 0;
+        border: 2px solid #fff;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    #choices button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+        border-radius: 5px;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    #choices button:hover {
+        background-color: #45a049;
+    }
+
+    #choices button:active {
+        transform: scale(0.95);
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const storyText = document.getElementById("story-text");
+    const sceneImage = document.getElementById("caminhos");
+    const choicesDiv = document.getElementById("choices");
+
+    function chooseOption(option) {
+        if (option === 1) {
+            // Cena 2 - Reino da Luz
+            storyText.innerHTML = 
+                "Você decide seguir para o Reino da Luz. O caminho é acolhedor, com árvores carregadas de folhas douradas " +
+                "e uma brisa suave que parece carregar cantos angelicais. Após algum tempo, você chega ao portão do reino, " +
+                "onde guardiões de armadura dourada o esperam. Eles dizem: 'Bem-vindo, viajante escolhido. O Conselho da Luz o aguarda para decidir o destino do equilíbrio.'";
+            sceneImage.src = "image/caminhoLuz.webp";
+            sceneImage.alt = "Portões do Reino da Luz, com guardiões de armadura dourada";
+            updateChoices(["Entrar no reino e encontrar o Conselho", "Explorar as redondezas antes de entrar"]);
+        } else if (option === 2) {
+            // Cena 2 - Reino da Escuridão
+            storyText.innerHTML = 
+                "Você escolhe o caminho das trevas. A névoa ao seu redor torna-se cada vez mais densa, e o frio arrepia " +
+                "sua espinha. Sons distantes de sussurros ecoam pelo ambiente. Após um tempo, você chega a um castelo sombrio " +
+                "com torres que parecem perfurar os céus. Um espírito vingativo surge diante de você, sua aura imponente exigindo uma decisão: 'Por que você veio aqui, mortal?'";
+            sceneImage.src = "image/caminhoTrevoso.webp";
+            sceneImage.alt = "Castelo sombrio do Reino da Escuridão, envolto em névoa";
+            updateChoices(["Responder ao espírito", "Recuar e retornar ao caminho inicial"]);
+        } else if (option === 3) {
+            // Cena 3 - Conselho da Luz
+            storyText.innerHTML = 
+                "Você entra no Reino da Luz e é recebido por um Conselho de seres iluminados. Eles explicam que o equilíbrio foi rompido devido " +
+                "ao roubo de um artefato pelo Reino da Escuridão. Você deve recuperar a relíquia sagrada para restaurar a paz.";
+            sceneImage.src = "image/manta.webp";
+            sceneImage.alt = "Conselho da Luz reunido em uma sala dourada";
+            updateChoices(["Aceitar a missão", "Recusar e retornar à vila"]);
+        } else if (option === 4) {
+            // Cena 3 - Explorar redondezas do Reino da Luz
+            storyText.innerHTML = 
+                "Você decide explorar as redondezas antes de entrar no Reino da Luz. Entre as árvores douradas, você encontra uma raposa " +
+                "dourada novamente. Ela diz: 'Escolhas apressadas podem trazer consequências inesperadas. Decida sabiamente.'";
+            sceneImage.src = "image/raposaBrilhante.webp";
+            sceneImage.alt = "A raposa dourada no meio das árvores";
+            updateChoices(["Seguir a raposa", "Ignorar e entrar no reino"]);
+        } else if (option === 5) {
+            // Cena 3 - Espírito Vingativo
+            storyText.innerHTML = 
+                "Você decide responder ao espírito vingativo. Ele ouve atentamente sua justificativa para estar ali e diz: 'Se sua intenção é " +
+                "recuperar o equilíbrio, precisará provar seu valor passando por três testes.'";
+            sceneImage.src = "image/superMonstro.webp";
+            sceneImage.alt = "Espírito vingativo pairando no ar";
+            updateChoices(["Aceitar os testes", "Fugir para salvar sua vida"]);
+        } else if (option === 6) {
+            // Cena 3 - Recuar no caminho da Escuridão
+            storyText.innerHTML = 
+                "O medo toma conta de você, e decide retornar ao caminho inicial. A sensação de que algo estava observando persiste, mas " +
+                "pelo menos você está fora do alcance do espírito.";
+            sceneImage.src = "ProjetoUm/image/floresta.webp";
+            sceneImage.alt = "Caminho de volta à clareira inicial";
+            updateChoices(["Escolher outro caminho", "Ficar na clareira para descansar"]);
+        }
+    }
+
+    function updateChoices(options) {
+        choicesDiv.innerHTML = ""; // Limpa as opções anteriores
+        options.forEach((option, index) => {
+            const button = document.createElement("button");
+            button.textContent = option;
+            button.onclick = () => chooseOption(index + 1);
+            choicesDiv.appendChild(button);
+        });
+    }
+
+    // Inicialização da cena inicial
+    updateChoices(["Seguir para o Reino da Luz", "Seguir para o Reino da Escuridão"]);
+});
+</script>
