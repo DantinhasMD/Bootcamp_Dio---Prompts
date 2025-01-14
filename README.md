@@ -7,7 +7,7 @@
 - Neste projeto, fomos desafiados a criar algo novo utilizando apenas a Inteligência Artificial para todo o Desenvolvimento. Você pode conferir o projeto clicando neste arquivo: [Projeto Um](https://github.com/DantinhasMD/Bootcamp_Dio---Prompts/tree/master/Projeto%20Um)
 
 ## Análisando Dados com IA
-- Neste projeto, fomos desafiados a criar algo novo utilizando apenas a Inteligência Artificial para todo o Desenvolvimento. Você pode conferir o projeto clicando neste arquivo: [Projeto Um](https://github.com/DantinhasMD/Bootcamp_Dio---Prompts/tree/master/Projeto%20Um)
+- Neste projeto, fomos desafiados a criar algo novo utilizando apenas a Inteligência Artificial para todo o Desenvolvimento. Você pode conferir o projeto clicando neste arquivo: [Projeto Dois](https://github.com/DantinhasMD/Bootcamp_Dio---Prompts/tree/master/Projeto%20Dois)
 
 ## ?/
 - Neste projeto, fomos desafiados a criar algo novo utilizando apenas a Inteligência Artificial para todo o Desenvolvimento. Você pode conferir o projeto clicando neste arquivo: [Projeto Um](https://github.com/DantinhasMD/Bootcamp_Dio---Prompts/tree/master/Projeto%20Um)
