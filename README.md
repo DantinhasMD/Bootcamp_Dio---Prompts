@@ -1,7 +1,7 @@
 # Microsoft AI for Tech - Criando Prompts Inteligentes 🤗
 - Neste repositório você terá acesso a todo meu aprendizado com o Bootcamp de Criação de Prompts Inteligentes da Dio. Apesar de ser um bootcamp mais teórico, foram forenceidos três projetos práticos que poderão ser vizualisados abaixo
 
-![Image](https://drive.google.com/file/d/1wGRe6wVrvuQg45sit7jeKNb8LbBk10mM/view)
+![Certificado - IA](https://github.com/user-attachments/assets/5d624517-332a-41bc-812b-fe9e94074ab0)
 
 ## Criando com IA 🚀
 - Neste projeto, fomos desafiados a criar algo novo utilizando apenas a Inteligência Artificial para todo o Desenvolvimento. Você pode conferir o projeto clicando neste arquivo: [Projeto Um](https://github.com/DantinhasMD/Bootcamp_Dio---Prompts/tree/master/Projeto%20Um)
