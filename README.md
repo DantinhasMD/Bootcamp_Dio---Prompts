@@ -10,6 +10,6 @@
 - Neste projeto, fomos desafiados a usar a IA para analisar nossa base de Dados e oferecer bons Insights: [Projeto Dois](https://github.com/DantinhasMD/Bootcamp_Dio---Prompts/tree/master/Projeto%20Dois)
 
 ## Documentando Projetos Automáticos Utilizando IA 🤖
-- Neste projeto, fomos desafiados a documentar um Projeto utilizando as ferramentas da IA: [Projeto Um](https://github.com/DantinhasMD/Bootcamp_Dio---Prompts/tree/b6380a37b37029f0e7999d07a07efebc1f88c885/Projeto%20Tres)
+- Neste projeto, fomos desafiados a documentar um Projeto utilizando as ferramentas da IA: [Projeto Três](https://github.com/DantinhasMD/Bootcamp_Dio---Prompts/tree/b6380a37b37029f0e7999d07a07efebc1f88c885/Projeto%20Tres)
 
 # Aprendizado deste Bootcamp 
